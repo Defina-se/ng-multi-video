@@ -78,6 +78,7 @@ angular.module('multiVideo',[])
         if(scope.progress >= 100){
           $interval.cancel(interval);
           $rootScope.$broadcast("multiVideo:finishProgressbar");
+          scope.progress = 0;
         }
       }
     }
