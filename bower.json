@@ -1,0 +1,30 @@
+{
+  "name": "ng-multi-video",
+  "version": "1.0.0",
+  "authors": [
+    "Washington Soares <washingtonudi@gmail.com>"
+  ],
+  "description": "Uma diretiva capaz e alternar entre um player HTML5 para arquivos MP4 ou para um player do Youtube/Vimeo a partir de sua URL",
+  "main": "src/ng-multi-video.js",
+  "dependencies": {
+    "angular": ">=1.3.x",
+    "anguvideo": "https://github.com/andoulla/angular-video.git",
+    "ng-clappr":  "https://github.com/washingtonsoares/ng-clappr.git"
+  },
+  "keywords": [
+    "video",
+    "mp4",
+    "youtube",
+    "player",
+    "vimeo"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/washingtonsoares/ng-multi-video",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
