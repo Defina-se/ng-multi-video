@@ -89,7 +89,10 @@ angular.module('multiVideo',[])
         scope.progress = 0;
         $(".progress-wrapper").show();
         interval = $interval(incrementCurrentProgress(scope), 50);
-        $rootScope.$on("multiVideo:finishProgressbar",function(){ $interval.cancel(interval });
+        $rootScope.$on("multiVideo:finishProgressbar",function(){
+          $interval.cancel(interval);
+        });
+
       }
     }
 
