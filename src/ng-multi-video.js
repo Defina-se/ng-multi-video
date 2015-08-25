@@ -74,9 +74,6 @@ angular.module('multiVideo',[])
 
     }
 
-  $scope.$on("$destroy",function( event ) {
-      $interval.cancel( interval );
-  });
 
     function incrementCurrentProgress(scope){
       return function(){
