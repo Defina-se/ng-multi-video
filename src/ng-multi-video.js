@@ -53,6 +53,11 @@ angular.module('multiVideo',[])
         $rootScope.$on("clappr:finishVideo", multiVideoFinish);
         $rootScope.$on("anguvideo:finishVideo", multiVideoFinish);
 
+        scope.$on("$destroy",function() {
+          console.log( "destroy");
+        });
+
+
       }
 
     };
