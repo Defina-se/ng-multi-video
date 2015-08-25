@@ -42,6 +42,7 @@ angular.module('multiVideo',[])
       },
       link: function(scope,element,attrs,ctrl,transclude){
         var interval;
+        scope.progress = 0;
 
         scope.$watch('src', watchScopeSrc(element,scope,interval));
 
@@ -71,16 +72,15 @@ angular.module('multiVideo',[])
 
     }
 
-    function incrementCurrentProgress(scope,interval){
+    function incrementCurrentProgress(scope){
       return function(){
         scope.progress += 0.5;
         if(scope.progress >= 100){
-          $interval.cancel(interval);
           $rootScope.$broadcast("multiVideo:finishProgressbar");
         }
       }
     }
-    function actionMultiVideoFinish(element,transclude,scope,interval) {
+    function actionMultiVideoFinish(element,transclude,scope) {
       return function(){
         var countDownElement = element.html(templateRoundProgressBar);
         angular.element(".progress-overlay").after(transclude());
@@ -88,7 +88,8 @@ angular.module('multiVideo',[])
         $compile(element.contents())(scope);
         scope.progress = 0;
         $(".progress-wrapper").show();
-        interval = $interval(incrementCurrentProgress(scope,interval), 50);
+        interval = $interval(incrementCurrentProgress(scope), 50);
+        $rootScope.$on("multiVideo:finishProgressbar",function(){ $interval.cancel(interval });
       }
     }
 
