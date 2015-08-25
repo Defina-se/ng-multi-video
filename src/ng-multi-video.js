@@ -53,16 +53,19 @@ angular.module('multiVideo',[])
         $rootScope.$on("clappr:finishVideo", multiVideoFinish);
         $rootScope.$on("anguvideo:finishVideo", multiVideoFinish);
 
-        scope.$on("$destroy",function() {
-          console.log( "destroy");
-        });
-
+        scope.$on("$destroy",clearIntervalProgressBar);
 
       }
 
     };
 
     var interval;
+
+    function clearIntervalProgressBar(){
+      $interval.cancel(interval);
+      interval = undefined;
+      scope.progress = 0;
+    }
 
     function watchScopeSrc(element,scope) {
         return function(newVal){
@@ -85,9 +88,7 @@ angular.module('multiVideo',[])
         scope.progress += 0.5;
         if(scope.progress >= 100){
           $rootScope.$broadcast("multiVideo:finishProgressbar");
-          $interval.cancel(interval);
-          interval = undefined;
-          scope.progress = 0;
+          clearIntervalProgressBar();
         }
       }
     }
