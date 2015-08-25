@@ -75,9 +75,7 @@ angular.module('multiVideo',[])
             return;
 
            $(".progress-wrapper").hide();
-           scope.progress = 0;
-           $interval.cancel(interval);
-           interval = undefined;
+           clearIntervalProgressBar(scope)();
            element.html(switchDirectives(newVal)).show();
            $compile(element.contents())(scope);
         }
