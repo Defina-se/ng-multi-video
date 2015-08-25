@@ -54,7 +54,7 @@ angular.module('multiVideo',[])
         $rootScope.$on("anguvideo:finishVideo", multiVideoFinish);
 
         scope.$on("$destroy",clearIntervalProgressBar(scope));
-        element.bind('$destroy',clearIntervalProgressBar(scope));
+
       }
 
     };
@@ -64,7 +64,7 @@ angular.module('multiVideo',[])
     function clearIntervalProgressBar(scope){
       return function(){
         $interval.cancel(interval);
-        interval = undefined;
+        delete interval;
         scope.progress = 0;
         return false;
       }
