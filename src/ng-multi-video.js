@@ -83,6 +83,7 @@ angular.module('multiVideo',[])
           $rootScope.$broadcast("multiVideo:finishProgressbar");
           $interval.cancel(interval);
           interval = undefined;
+          scope.progress = 0;
         }
       }
     }
