@@ -82,7 +82,7 @@ angular.module('multiVideo',[])
         }
       }
     }
-    function actionMultiVideoFinish(element,transclude,scope,interval) {
+    function actionMultiVideoFinish(element,transclude,scope) {
       return function(){
         var countDownElement = element.html(templateRoundProgressBar);
         angular.element(".progress-overlay").after(transclude());
