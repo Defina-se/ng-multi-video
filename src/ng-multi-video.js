@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('multiVideo',[])
-  .directive('multiVideo', function ($compile,$sce,$rootScope,$interval) {
+  .directive('multiVideo', function ($compile,$sce,$rootScope,$interval,$scope) {
 
     var templateRoundProgressBar = '<div class="progress-wrapper">'+
                                       '<div class="progress-overlay">'+
@@ -74,7 +74,9 @@ angular.module('multiVideo',[])
 
     }
 
-
+  $scope.$on("$destroy",function( event ) {
+      $interval.cancel( interval );
+  });
 
     function incrementCurrentProgress(scope){
       return function(){
