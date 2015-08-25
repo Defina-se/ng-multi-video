@@ -57,6 +57,8 @@ angular.module('multiVideo',[])
 
     };
 
+    var interval;
+
     function watchScopeSrc(element,scope) {
         return function(newVal){
           if (!newVal)
@@ -64,14 +66,14 @@ angular.module('multiVideo',[])
 
            $(".progress-wrapper").hide();
            scope.progress = 0;
-
+           $interval.cancel(interval);
            element.html(switchDirectives(newVal)).show();
            $compile(element.contents())(scope);
         }
 
     }
 
-    var interval;
+
 
     function incrementCurrentProgress(scope){
       return function(){
