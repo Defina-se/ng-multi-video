@@ -41,11 +41,10 @@ angular.module('multiVideo',[])
         clickProgress: '&'
       },
       link: function(scope,element,attrs,ctrl,transclude){
-        var interval;
 
-        scope.$watch('src', watchScopeSrc(element,scope,interval));
+        scope.$watch('src', watchScopeSrc(element,scope));
 
-        $rootScope.$on("multiVideo:finishVideo", actionMultiVideoFinish(element,transclude,scope,interval));
+        $rootScope.$on("multiVideo:finishVideo", actionMultiVideoFinish(element,transclude,scope));
 
         var multiVideoFinish = function(){
           return $rootScope.$broadcast("multiVideo:finishVideo");
@@ -58,7 +57,7 @@ angular.module('multiVideo',[])
 
     };
 
-    function watchScopeSrc(element,scope,interval) {
+    function watchScopeSrc(element,scope) {
         return function(newVal){
           if (!newVal)
             return;
@@ -66,15 +65,15 @@ angular.module('multiVideo',[])
            $(".progress-wrapper").hide();
            scope.progress = 0;
 
-           $interval.cancel(interval);
-           
            element.html(switchDirectives(newVal)).show();
            $compile(element.contents())(scope);
         }
 
     }
 
-    function incrementCurrentProgress(scope,interval){
+    var interval=10;
+
+    function incrementCurrentProgress(scope){
       return function(){
         scope.progress += 0.5;
         if(scope.progress >= 100){
@@ -91,7 +90,8 @@ angular.module('multiVideo',[])
         $compile(element.contents())(scope);
         scope.progress = 0;
         $(".progress-wrapper").show();
-        interval = $interval(incrementCurrentProgress(scope,interval), 50);
+        console.log(interval);
+        interval = $interval(incrementCurrentProgress(scope), 50);
       }
     }
 
