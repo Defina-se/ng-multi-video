@@ -54,7 +54,7 @@ angular.module('multiVideo',[])
         $rootScope.$on("anguvideo:finishVideo", multiVideoFinish);
 
         scope.$on("$destroy",clearIntervalProgressBar(scope));
-
+        element.bind('$destroy',clearIntervalProgressBar(scope));
       }
 
     };
@@ -94,6 +94,7 @@ angular.module('multiVideo',[])
         }
       }
     }
+
     function actionMultiVideoFinish(element,transclude,scope) {
       return function(){
         var countDownElement = element.html(templateRoundProgressBar);
