@@ -64,7 +64,7 @@ angular.module('multiVideo',[])
     function clearIntervalProgressBar(scope){
       return function(){
         $interval.cancel(interval);
-        delete interval;
+        interval = undefined;
         scope.progress = 0;
         return false;
       }
