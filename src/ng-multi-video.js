@@ -38,23 +38,30 @@ angular.module('multiVideo',[])
       transclude: true,
       scope:{
         src: '=src',
-        clickProgress: '&'
+        clickProgress: '&',
+        automaticNextVideo: '=automaticNextVideo'
       },
       link: function(scope,element,attrs,ctrl,transclude){
 
+        if(!scope.automaticNextVideo && typeof scope.automaticNextVideo !== 'undefined'){
+          scope.$watch('src', function(newVal){
+            if (!newVal)
+              return;
+             element.html(switchDirectives(newVal)).show();
+             $compile(element.contents())(scope);
+          });
+          return;
+        }
+
         scope.interval = null;
-
         scope.$watch('src', watchScopeSrc(element,scope));
-
         scope.$on("multiVideo:finishVideo", actionMultiVideoFinish(element,transclude,scope));
-
         var multiVideoFinish = function(){
           return $rootScope.$broadcast("multiVideo:finishVideo");
         };
 
         scope.$on("clappr:finishVideo", multiVideoFinish);
         scope.$on("anguvideo:finishVideo", multiVideoFinish);
-
         scope.$on("$destroy",clearIntervalProgressBar(scope));
 
       }
