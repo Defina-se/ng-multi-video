@@ -20,14 +20,20 @@ angular.module('multiVideo',[])
 
     var templateAnguVideo = '<div anguvideo ng-model="src" width="100%" height="360"></div>';
     var templateClappr    = '<clappr src="src"/>';
+    var templateLightBox  = '<angular-master-lightbox src="src">';
 
     var switchDirectives = function(val){
 
       var  htmlDirective;
+      var extension = val.substring(val.length - 4);
 
-      if((val.substring(val.length - 4) === ".mp4")){
+      if( extension === ".mp4"){
         htmlDirective = templateClappr;
-      }else{
+      }
+      else if(extension === ".jpg" || extension === ".png"){
+        htmlDirective = templateLightBox;
+      }
+      else{
         htmlDirective = templateAnguVideo;
       }
 
