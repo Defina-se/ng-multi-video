@@ -20,7 +20,7 @@ angular.module('multiVideo',[])
 
     var templateAnguVideo = '<div anguvideo ng-model="src" width="100%" height="360"></div>';
     var templateClappr    = '<clappr src="src"/>';
-    var templateLightBox  = '<angular-master-lightbox src="src">';
+    var templateLightBox  = '<angular-master-lightbox images="src"></angular-master-lightbox';
 
     var switchDirectives = function(val){
 
