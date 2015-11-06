@@ -20,12 +20,8 @@ angular.module('multiVideo',[])
 
     var templateAnguVideo = '<div anguvideo ng-model="src" width="100%" height="360"></div>';
     var templateClappr    = '<clappr src="src"/>';
-    var templateLightBox  = '<angular-master-lightbox images="src" class="angular-master-lightbox" style="position: relative">' +
-                              '<button class="btn btn-success btn-next-media" ng-click="clickProgress()">'+
-                                ' <span class="glyphicon glyphicon-play-circle"></span>'+
-                                ' Próximo counteúdo'+
-                              '</button>' +
-                            '</angular-master-lightbox';
+    var templateLightBox  = '<angular-master-lightbox images="src" class="angular-master-lightbox" >' +
+                            '</angular-master-lightbox>';
 
     var switchDirectives = function(val){
         var  htmlDirective;
