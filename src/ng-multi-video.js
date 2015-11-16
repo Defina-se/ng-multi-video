@@ -30,7 +30,7 @@ angular.module('multiVideo',[])
         if( extension === ".mp4"){
           htmlDirective = templateClappr;
         }
-        else if(extension === ".jpg" || extension === ".png"){
+        else if(extension === ".jpg" || extension === ".png" || extension === ".gif"){
           htmlDirective = templateLightBox;
         }
         else{
