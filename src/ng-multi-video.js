@@ -70,6 +70,14 @@ angular.module('multiVideo',[])
         $interval.cancel(scope.interval);
         scope.interval = undefined;
         scope.progress = 0;
+
+
+        var mediaElement = angular.element('video')[0];
+        if(mediaElement){
+          mediaElement.pause();
+          mediaElement.src='';
+        }
+
         return false;
       }
     }
