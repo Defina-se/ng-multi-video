@@ -9,7 +9,8 @@
   "dependencies": {
     "angular": "~1.3.18",
     "anguvideo": "https://github.com/Defina-se/angular-video.git",
-    "angular-clappr":  "https://github.com/Defina-se/angular-clappr.git"
+    "angular-clappr":  "https://github.com/Defina-se/angular-clappr.git",
+    "angular-master-lightbox": "https://github.com/Defina-se/angular-master-lightbox.git"
   },
   "keywords": [
     "video",
