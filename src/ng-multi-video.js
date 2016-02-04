@@ -18,7 +18,7 @@ angular.module('multiVideo',[])
                                         'style="cursor: pointer;" ng-click="clickProgress()">'+
                                       '</div>';
 
-    var templateAnguVideo = '<div anguvideo ng-model="src" width="100%" height="360"></div>';
+    var templateAnguVideo = '<div anguvideo ng-model="src" width="100%" height="411"></div>';
     var templateClappr    = '<clappr src="src"/>';
     var templateLightBox  = '<angular-master-lightbox images="src" class="angular-master-lightbox" >' +
                             '</angular-master-lightbox>';
