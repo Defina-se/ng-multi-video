@@ -4,9 +4,8 @@ angular.module('multiVideo',[])
   .directive('multiVideo', function ($compile,$sce,$rootScope,$interval) {
 
     var templateWrapperProgressBar = '<div class="progress-wrapper">'+
-                                              '<div class="progress-overlay">'+
-                                              ' </div>'+
-                                          '</div>';
+                                          '<div class="progress-overlay"></div>'+
+                                      '</div>';
 
     var templateProgressBar       =   '<div class="progress-play" ></div>'+
                                       '<div round-progress max="100"'+
@@ -15,12 +14,12 @@ angular.module('multiVideo',[])
                                         'semi="false" rounded="false"'+
                                         'clockwise="true" responsive="true"'+
                                         'iterations="100" animation="easeInSine"'+
-                                        'style="cursor: pointer;" ng-click="clickProgress()">'+
+                                        'class="pointer" ng-click="clickProgress()">'+
                                       '</div>';
 
-    var templateAnguVideo = '<div anguvideo ng-model="src" width="100%" height="411"></div>';
-    var templateClappr    = '<clappr src="src"/>';
-    var templateLightBox  = '<angular-master-lightbox images="src" class="angular-master-lightbox" >' +
+    var templateAnguVideo = '<div anguvideo ng-model="src"></div>';
+    var templateClappr    = '<clappr src="src"></clappr>';
+    var templateLightBox  = '<angular-master-lightbox images="src">' +
                             '</angular-master-lightbox>';
 
     var switchDirectives = function(val){
