@@ -55,11 +55,14 @@ angular.module('multiVideo',[])
         var multiVideoFinish = function(){
             return $rootScope.$broadcast("multiVideo:finishVideo");
         };
-
+        var multiVideoWatchedMinPercentage = function(){
+          console.log("viu o minimo");
+        };
         scope.$on("clappr:finishVideo", multiVideoFinish);
         scope.$on("anguvideo:finishVideo", multiVideoFinish);
         scope.$on("$destroy",clearIntervalProgressBar(scope));
-
+        scope.$on("clappr:watchedMinPercentage", multiVideoWatchedMinPercentage);
+        scope.$on("anguvideo:watchedMinPercentage", multiVideoWatchedMinPercentage)
       }
 
     };
@@ -93,7 +96,6 @@ angular.module('multiVideo',[])
         }
 
     }
-
 
     function incrementCurrentProgress(scope){
       return function(){
