@@ -46,6 +46,7 @@ angular.module('multiVideo',[])
         src: '=src',
         clickProgress: '&',
         watchedMinPercentage: '&',
+        allowEmmitWatchedMinPercentageEvent: '=',
         automaticNextVideo: '=automaticNextVideo'
       },
       link: function(scope,element,attrs,ctrl,transclude){
@@ -57,8 +58,9 @@ angular.module('multiVideo',[])
             return $rootScope.$broadcast("multiVideo:finishVideo");
         };
         var multiVideoWatchedMinPercentage = function(){
-          console.log("viu o minimo");
-          scope.watchedMinPercentage();
+          if(scope.allowEmmitWatchedMinPercentageEvent){
+            scope.watchedMinPercentage();
+          }
         };
         scope.$on("clappr:finishVideo", multiVideoFinish);
         scope.$on("anguvideo:finishVideo", multiVideoFinish);
