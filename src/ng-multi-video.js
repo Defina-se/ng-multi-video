@@ -62,6 +62,12 @@ angular.module('multiVideo',[])
             scope.watchedMinPercentage();
           }
         };
+        $window.addEventListener('visibilitychange',function(){
+         if(document.hidden){
+           scope.$broadcast("pause");
+         }else{
+           scope.$broadcast("play");
+         }
         scope.$on("clappr:finishVideo", multiVideoFinish);
         scope.$on("anguvideo:finishVideo", multiVideoFinish);
         scope.$on("$destroy",clearIntervalProgressBar(scope));
