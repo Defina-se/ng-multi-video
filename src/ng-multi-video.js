@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('multiVideo',[])
-  .directive('multiVideo', function ($compile,$sce,$rootScope,$interval) {
+  .directive('multiVideo', function ($compile,$sce,$rootScope,$interval,$window) {
 
     var templateWrapperProgressBar = '<div class="progress-wrapper">'+
                                           '<div class="progress-overlay"></div>'+
