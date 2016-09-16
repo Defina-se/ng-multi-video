@@ -62,20 +62,26 @@ angular.module('multiVideo',[])
             scope.watchedMinPercentage();
           }
         };
-        $window.addEventListener('visibilitychange',function(){
-           if(document.hidden){
-             scope.$broadcast("pause");
-           }else{
-             scope.$broadcast("play");
-           }
-         });
-        scope.$on("clappr:finishVideo", multiVideoFinish);
-        scope.$on("anguvideo:finishVideo", multiVideoFinish);
-        scope.$on("$destroy",clearIntervalProgressBar(scope));
-        scope.$on("clappr:watchedMinPercentage", multiVideoWatchedMinPercentage);
-        scope.$on("anguvideo:watchedMinPercentage", multiVideoWatchedMinPercentage)
-      }
 
+          function visibilitychange() {
+              if (document.hidden) {
+                  scope.$broadcast("pause");
+              } else {
+                  scope.$broadcast("play");
+              }
+          }
+
+          $window.addEventListener('visibilitychange', visibilitychange);
+
+          scope.$on("clappr:finishVideo", multiVideoFinish);
+          scope.$on("anguvideo:finishVideo", multiVideoFinish);
+          scope.$on("$destroy", clearIntervalProgressBar(scope));
+          scope.$on("clappr:watchedMinPercentage", multiVideoWatchedMinPercentage);
+          scope.$on("$destroy", function () {
+              $window.removeEventListener('visibilitychange', visibilitychange);
+          });
+          scope.$on("anguvideo:watchedMinPercentage", multiVideoWatchedMinPercentage)
+      }
     };
 
     function clearIntervalProgressBar(scope){
