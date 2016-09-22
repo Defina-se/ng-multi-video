@@ -63,24 +63,11 @@ angular.module('multiVideo',[])
           }
         };
 
-          function visibilitychange() {
-              if (document.hidden) {
-                  scope.$broadcast("pause");
-              } else {
-                  scope.$broadcast("play");
-              }
-          }
-
-          $window.addEventListener('visibilitychange', visibilitychange);
-
-          scope.$on("clappr:finishVideo", multiVideoFinish);
-          scope.$on("anguvideo:finishVideo", multiVideoFinish);
-          scope.$on("$destroy", clearIntervalProgressBar(scope));
-          scope.$on("clappr:watchedMinPercentage", multiVideoWatchedMinPercentage);
-          scope.$on("$destroy", function () {
-              $window.removeEventListener('visibilitychange', visibilitychange);
-          });
-          scope.$on("anguvideo:watchedMinPercentage", multiVideoWatchedMinPercentage)
+        scope.$on("clappr:finishVideo", multiVideoFinish);
+        scope.$on("anguvideo:finishVideo", multiVideoFinish);
+        scope.$on("$destroy", clearIntervalProgressBar(scope));
+        scope.$on("clappr:watchedMinPercentage", multiVideoWatchedMinPercentage);
+        scope.$on("anguvideo:watchedMinPercentage", multiVideoWatchedMinPercentage)
       }
     };
 
