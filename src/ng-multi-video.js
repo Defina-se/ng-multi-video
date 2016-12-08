@@ -3,20 +3,6 @@
 angular.module('multiVideo',[])
   .directive('multiVideo', function ($compile,$sce,$rootScope,$interval,$window) {
 
-    var templateWrapperProgressBar = '<div class="progress-wrapper">'+
-                                          '<div class="progress-overlay"></div>'+
-                                      '</div>';
-
-    var templateProgressBar       =   '<div class="progress-play" ></div>'+
-                                      '<div round-progress max="100"'+
-                                        'current="progress" color="#45ccce"'+
-                                        'bgcolor="#eaeaea" radius="70" stroke="5"'+
-                                        'semi="false" rounded="false"'+
-                                        'clockwise="true" responsive="true"'+
-                                        'iterations="100" animation="easeInSine"'+
-                                        'class="pointer" ng-click="clickProgress()">'+
-                                      '</div>';
-
     var templateAnguVideo = '<div anguvideo ng-model="src"></div>';
     var templateClappr    = '<clappr src="src"></clappr>';
     var templateLightBox  = '<angular-master-lightbox images="src">' +
@@ -53,16 +39,12 @@ angular.module('multiVideo',[])
 
         scope.interval = null;
         scope.$watch('src', watchScopeSrc(element,scope));
-        scope.$on("multiVideo:finishVideo", actionMultiVideoFinish(element,transclude,scope));
-        var multiVideoFinish = function(){
-            return $rootScope.$broadcast("multiVideo:finishVideo");
-        };
         var multiVideoWatchedMinPercentage = function(){
           if(scope.allowEmmitWatchedMinPercentageEvent){
             scope.watchedMinPercentage();
           }
         };
-
+        var multiVideoFinish = function(){};
         scope.$on("clappr:finishVideo", multiVideoFinish);
         scope.$on("anguvideo:finishVideo", multiVideoFinish);
         scope.$on("$destroy", clearIntervalProgressBar(scope));
@@ -109,22 +91,6 @@ angular.module('multiVideo',[])
           clearIntervalProgressBar(scope)();
           return false;
         }
-      }
-    }
-
-    function actionMultiVideoFinish(element,transclude,scope) {
-      return function(){
-
-        element.html(templateWrapperProgressBar);
-
-        if(scope.automaticNextVideo){
-          angular.element(".progress-overlay").append(templateProgressBar);
-          scope.progress = 0;
-          scope.interval = $interval(incrementCurrentProgress(scope), 50);
-        }
-        angular.element(".progress-overlay").after(transclude());
-        $compile(element.contents())(scope);
-        $(".progress-wrapper").show();
       }
     }
 
