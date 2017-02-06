@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('multiVideo',[])
-  .directive('multiVideo', function ($compile,$sce,$rootScope,$interval,$window) {
+  .directive('multiVideo', ['$compile', '$sce', '$rootScope', '$interval', '$window', function ($compile,$sce,$rootScope,$interval,$window) {
 
     var templateAnguVideo = '<div anguvideo ng-model="src"></div>';
     var templateClappr    = '<clappr src="src"></clappr>';
@@ -94,4 +94,4 @@ angular.module('multiVideo',[])
       }
     }
 
-  });
+  }]);
