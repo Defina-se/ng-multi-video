@@ -46,7 +46,7 @@ angular.module('multiVideo', [])
 
         scope.$watch('src', watchScopeSrc(element, scope))
         var multiVideoWatchedMinPercentage = function () {
-          if (scope.allowEmmitWatchedMinPercentageEvent) {
+          if (scope.allowEmmitWatchedMinPercentageEvent && scope.videoToPlay === scope.src) {
             scope.watchedMinPercentage()
           }
         }
