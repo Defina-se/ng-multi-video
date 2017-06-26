@@ -37,13 +37,6 @@ angular.module('multiVideo', [])
       link: function (scope, element, attrs, ctrl, transclude) {
         scope.interval = null
 
-        if (scope.opening) {
-          scope.videoToPlay = scope.opening
-          scope.hasPlayedOpening = true
-        } else {
-          scope.videoToPlay = scope.src
-        }
-
         scope.$watch('src', watchScopeSrc(element, scope))
         var multiVideoWatchedMinPercentage = function () {
           if (scope.allowEmmitWatchedMinPercentageEvent && scope.videoToPlay === scope.src) {
@@ -55,10 +48,12 @@ angular.module('multiVideo', [])
           if (scope.videoToPlay === scope.opening) {
             scope.videoToPlay = scope.src
             scope.autoPlay = '1'
+            sessionStorage.setItem('hasPlayedOpening', 'TRUE')
           } else if (scope.videoToPlay === scope.src && scope.ending) {
             scope.videoToPlay = scope.ending
             scope.autoPlay = '1'
           }
+
           scope.$apply()
         }
 
@@ -92,11 +87,12 @@ angular.module('multiVideo', [])
           return
         }
 
-        if (!scope.hasPlayedOpening) {
+				var hasPlayedOpening = sessionStorage.getItem('hasPlayedOpening') === 'TRUE'
+        if (scope.opening && !hasPlayedOpening) {
+          scope.videoToPlay = scope.opening
+        } else {
           scope.videoToPlay = newVal
         }
-
-					 delete scope.hasPlayedOpening
 
         $('.progress-wrapper').hide()
         clearIntervalProgressBar(scope)()
