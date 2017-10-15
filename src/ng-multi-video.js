@@ -2,7 +2,7 @@
 
 angular.module('multiVideo', [])
   .directive('multiVideo', ['$compile', '$sce', '$rootScope', '$interval', '$window', function ($compile, $sce, $rootScope, $interval, $window) {
-    var templateAnguVideo = '<div anguvideo auto-play="{{autoPlay}}" ng-model="videoToPlay"></div>'
+    var templateAnguVideo = '<div anguvideo auto-play="{{autoPlay}}" url="{{videoToPlay}}"></div>'
     var templateClappr = '<clappr src="src"></clappr>'
     var templateLightBox = '<angular-master-lightbox images="src">' +
                             '</angular-master-lightbox>'
